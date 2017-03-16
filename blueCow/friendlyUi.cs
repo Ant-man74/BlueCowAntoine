@@ -489,10 +489,10 @@ namespace blueCow
 
             SysConfig.minCities = minimumCityNumber;
             SysConfig.maxCities = maximumCityNumber;
-            SysConfig.maxTotalDist = minimumTourLength;
-            SysConfig.minTotalDist = maximumTourLength;
-            SysConfig.maxHopDist = minimumDistance;
-            SysConfig.minHopDist = maximumDistance;
+            SysConfig.maxTotalDist = maximumTourLength;
+            SysConfig.minTotalDist = minimumTourLength;
+            SysConfig.maxHopDist = maximumDistance;
+            SysConfig.minHopDist = minimumDistance;
             SysConfig.illegalHops = illegalHops;
 
             SysConfig.illegalHopePenalty = exceptionWeigth;

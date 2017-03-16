@@ -165,12 +165,12 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_Data\Distances_vs2015.mdf">
+    <Content Include="App_Data\Distances.mdf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="App_Data\Distances_vs2015_log.ldf">
+    <Content Include="App_Data\Distances_log.ldf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-      <DependentUpon>Distances_vs2015.mdf</DependentUpon>
+      <DependentUpon>Distances.mdf</DependentUpon>
     </Content>
   </ItemGroup>
   <ItemGroup>

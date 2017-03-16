@@ -51,10 +51,7 @@ namespace blueCow.Lib
             bool illegal = false;
             foreach(var kvp in SysConfig.illegalHops)
             {
-                if ((start == kvp[0] && end == kvp[1]) || (start == kvp[0] && end == kvp[1]))
-                {
-                    illegal = true;
-                }
+                illegal = ((start == kvp[0] && end == kvp[1]) || (start == kvp[1] && end == kvp[0])) ? true : illegal || false;
             }
             return illegal ? _illegalHopePenalty : 0;
         }

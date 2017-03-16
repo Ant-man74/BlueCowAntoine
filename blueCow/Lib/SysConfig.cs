@@ -14,7 +14,7 @@ namespace blueCow.Lib
          * Min kmdist = 13 (hop) (some are 0 for some reason? Different codes for the same country maybe)
          */
         public static int chromeLength = 203; // the number of cities
-        public static string connString = @"Data Source=(localdb)\MSSQLLocalDB;AttachDbFilename='D:\wVisualStudio\blueCowAntoine-master\blueCow\App_Data\Distances_vs2015.mdf';Initial Catalog=newConnectionUpgrade;Integrated Security=True";
+        public static string connString = Properties.Settings.Default.Distances_vs2015ConnectionString1;
         //public static readonly string connString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\S14003221\Desktop\blueCow\blueCow\App_Data\Distances.mdf;Integrated Security=True";
         public static int minBid = 100000;
         public static int maxBid = 10000000;
