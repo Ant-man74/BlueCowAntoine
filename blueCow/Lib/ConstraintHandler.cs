@@ -86,27 +86,39 @@ namespace blueCow.Lib
                 {
                     case "SA":
                         if (kvp.Value < SysConfig.samericanCityLimit)                        
-                            violation += (SysConfig.samericanCityLimit - kvp.Value) * _continentPenalty;                        
+                            violation += (SysConfig.samericanCityLimit - kvp.Value) * _continentPenalty;
+                        if (kvp.Value > SysConfig.samericanCityLimitMax)
+                            violation += (kvp.Value - SysConfig.samericanCityLimitMax) * _continentPenalty;
                         break;
                     case "AS":
                         if (kvp.Value < SysConfig.asiaCityLimit)
                             violation += (SysConfig.asiaCityLimit - kvp.Value) * _continentPenalty;
+                        if (kvp.Value > SysConfig.asiaCityLimitMax)
+                            violation += (kvp.Value - SysConfig.asiaCityLimitMax) * _continentPenalty;
                         break;
                     case "EU":
                         if (kvp.Value < SysConfig.europeanCityLimit)
                             violation += (SysConfig.europeanCityLimit - kvp.Value) * _continentPenalty;
+                        if (kvp.Value > SysConfig.europeanCityLimitMax)
+                            violation += (kvp.Value - SysConfig.europeanCityLimitMax) * _continentPenalty;
                         break;
                     case "AF":
                         if (kvp.Value < SysConfig.africanCityLimit)
                             violation += (SysConfig.africanCityLimit - kvp.Value) * _continentPenalty;
+                        if (kvp.Value > SysConfig.africanCityLimitMax)
+                            violation += (kvp.Value - SysConfig.africanCityLimitMax) * _continentPenalty;
                         break;
                     case "OC":
                         if (kvp.Value < SysConfig.oceaniaCityLimit)
                             violation += (SysConfig.samericanCityLimit - kvp.Value) * _continentPenalty;
+                        if (kvp.Value > SysConfig.oceaniaCityLimitMax)
+                            violation += (kvp.Value - SysConfig.oceaniaCityLimitMax) * _continentPenalty;
                         break;
                     case "NA":
                         if (kvp.Value < SysConfig.namericaCityLimit)
                             violation += (SysConfig.samericanCityLimit - kvp.Value) * _continentPenalty;
+                        if (kvp.Value > SysConfig.namericaCityLimitMax)
+                            violation += (kvp.Value - SysConfig.namericaCityLimitMax) * _continentPenalty;
                         break;
                 }
             }

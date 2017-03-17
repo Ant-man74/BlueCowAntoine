@@ -56,6 +56,12 @@ namespace blueCow.Lib
         public static int samericanCityLimit = 3;
         public static int asiaCityLimit = 3;
         public static int oceaniaCityLimit = 3;
+        public static int africanCityLimitMax = 10;
+        public static int europeanCityLimitMax = 10;
+        public static int namericaCityLimitMax = 10;
+        public static int samericanCityLimitMax = 10;
+        public static int asiaCityLimitMax = 10;
+        public static int oceaniaCityLimitMax = 10;
 
         public static int maxTourGenerations = 100;
     }
