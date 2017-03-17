@@ -97,20 +97,24 @@ namespace blueCow.Lib
 
         public List<string> MutateTravelOrder(List<string> travelOrder)
         {
-            // get first item to swap
-            int ind1 = _rand.Next(0, travelOrder.Count - 1);
-            // get second item to swap
-            int ind2 = _rand.Next(0, travelOrder.Count - 1);
-            while (ind1 == ind2)
+            int steps = Convert.ToInt32(Math.Ceiling(Convert.ToDouble(travelOrder.Count * (SysConfig.stepSize / 100))));
+            for (int i = 0; i < steps; i++)
             {
-                ind1 = _rand.Next(0, travelOrder.Count - 1);
-                ind2 = _rand.Next(0, travelOrder.Count - 1);
+                // get first item to swap
+                int ind1 = _rand.Next(0, travelOrder.Count - 1);
+                // get second item to swap
+                int ind2 = _rand.Next(0, travelOrder.Count - 1);
+                while (ind1 == ind2)
+                {
+                    ind1 = _rand.Next(0, travelOrder.Count - 1);
+                    ind2 = _rand.Next(0, travelOrder.Count - 1);
+                }
+                // swap order and return
+                string itemAtInd1 = travelOrder[ind1];
+                string itemAtInd2 = travelOrder[ind2];
+                travelOrder[ind1] = itemAtInd2;
+                travelOrder[ind2] = itemAtInd1;
             }
-            // swap order and return
-            string itemAtInd1 = travelOrder[ind1];
-            string itemAtInd2 = travelOrder[ind2];
-            travelOrder[ind1] = itemAtInd2;
-            travelOrder[ind2] = itemAtInd1;
             return travelOrder;
         }
 
@@ -187,6 +191,7 @@ namespace blueCow.Lib
             {
                 // randomly select a member
                 Tour ind = tours[_rand.Next(0, tours.Count - 1)];
+                // causes infini loop
                 //if(dontSelect != null)
                 //{
                 //    if (ind.TravelOrder.OrderAndStringEquals(dontSelect.TravelOrder))
@@ -286,7 +291,7 @@ namespace blueCow.Lib
         public bool[] MutateBids(bool[] bids)
         {
             int bitToFlip;
-            int bitsToFlip = Convert.ToInt32(Math.Round(Convert.ToDouble(SysConfig.chromeLength * (SysConfig.stepSize / 100))));
+            int bitsToFlip = Convert.ToInt32(Math.Ceiling(Convert.ToDouble(SysConfig.chromeLength * (SysConfig.stepSize / 100))));
             // flip and return
             for(int i = 0; i < bitsToFlip; i++)
             {
@@ -311,13 +316,14 @@ namespace blueCow.Lib
             {
                 // randomly select a member
                 Individual ind = inds[_rand.Next(0, inds.Count - 1)];
-                if (dontSelect != null)
-                {
-                    if (ind.Cities.OrderAndBoolEquals(dontSelect.Cities))
-                    {
-                        continue;
-                    }
-                }
+                // could cause infini loop
+                //if (dontSelect != null)
+                //{
+                //    if (ind.Cities.OrderAndBoolEquals(dontSelect.Cities))
+                //    {
+                //        continue;
+                //    }
+                //}
                 double probability = Convert.ToDouble(ind.ObjectiveValue) / Convert.ToDouble(maxFitness);
                 if (Convert.ToDouble(_rand.Next(0, 100)) / 100 <= probability)
                 {
