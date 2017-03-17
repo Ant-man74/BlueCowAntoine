@@ -156,6 +156,7 @@
             this.listBox2.HorizontalScrollbar = true;
             this.listBox2.Location = new System.Drawing.Point(236, 29);
             this.listBox2.Name = "listBox2";
+            this.listBox2.SelectionMode = System.Windows.Forms.SelectionMode.MultiExtended;
             this.listBox2.Size = new System.Drawing.Size(198, 199);
             this.listBox2.TabIndex = 5;
             // 
@@ -165,6 +166,7 @@
             this.listBox3.HorizontalScrollbar = true;
             this.listBox3.Location = new System.Drawing.Point(462, 29);
             this.listBox3.Name = "listBox3";
+            this.listBox3.SelectionMode = System.Windows.Forms.SelectionMode.MultiExtended;
             this.listBox3.Size = new System.Drawing.Size(198, 199);
             this.listBox3.TabIndex = 9;
             // 
@@ -585,6 +587,7 @@
             this.listBox4.HorizontalScrollbar = true;
             this.listBox4.Location = new System.Drawing.Point(686, 29);
             this.listBox4.Name = "listBox4";
+            this.listBox4.SelectionMode = System.Windows.Forms.SelectionMode.MultiExtended;
             this.listBox4.Size = new System.Drawing.Size(198, 199);
             this.listBox4.TabIndex = 35;
             // 
@@ -646,6 +649,7 @@
             this.listBox5.HorizontalScrollbar = true;
             this.listBox5.Location = new System.Drawing.Point(686, 249);
             this.listBox5.Name = "listBox5";
+            this.listBox5.SelectionMode = System.Windows.Forms.SelectionMode.MultiExtended;
             this.listBox5.Size = new System.Drawing.Size(198, 121);
             this.listBox5.TabIndex = 39;
             // 
@@ -730,6 +734,7 @@
             this.listBox9.HorizontalScrollbar = true;
             this.listBox9.Location = new System.Drawing.Point(686, 388);
             this.listBox9.Name = "listBox9";
+            this.listBox9.SelectionMode = System.Windows.Forms.SelectionMode.MultiExtended;
             this.listBox9.Size = new System.Drawing.Size(198, 69);
             this.listBox9.TabIndex = 46;
             // 
@@ -758,7 +763,6 @@
             this.groupBox2.TabIndex = 48;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Tour Optimisation Illustration (Init pop with 1 member and 0 tour optimisations)";
-            // 
             // label20
             // 
             this.label20.AutoSize = true;

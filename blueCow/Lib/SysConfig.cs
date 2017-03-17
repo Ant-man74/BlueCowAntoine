@@ -56,6 +56,7 @@ namespace blueCow.Lib
         public static int samericanCityLimit = 3;
         public static int asiaCityLimit = 3;
         public static int oceaniaCityLimit = 3;
+
         public static int africanCityLimitMax = 10;
         public static int europeanCityLimitMax = 10;
         public static int namericaCityLimitMax = 10;
