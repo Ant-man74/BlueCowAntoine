@@ -150,6 +150,7 @@ namespace blueCow
         private void button4_Click(object sender, EventArgs e)
         {
             SysConfig.selectionMethod = comboBox1.Text;
+            SysConfig.replacementMethod = comboBox2.Text;
             chart2.ChartAreas[0].AxisX.Minimum = 0;
             progressBar4.Maximum = Convert.ToInt32(numericUpDown6.Value);
             backgroundWorker3.RunWorkerAsync(chart2);
@@ -166,6 +167,7 @@ namespace blueCow
         private void button8_Click(object sender, EventArgs e)
         {
             SysConfig.selectionMethod = comboBox1.Text;
+            SysConfig.replacementMethod = comboBox2.Text;
             progressBar2.Maximum = Convert.ToInt32(numericUpDown3.Value);
             backgroundWorker2.RunWorkerAsync(chart1);
         }
@@ -214,7 +216,7 @@ namespace blueCow
             Individual ind = _ga.GetFittestIndividual();
             for (int j = 0; j < numericUpDown3.Value; j++)
             {
-                ind = _opt.OptimiseTour(ind, SysConfig.selectionMethod, _dbh);
+                ind = _opt.OptimiseTour(ind, SysConfig.selectionMethod, _dbh, Convert.ToInt32(numericUpDown8.Value));
                 backgroundWorker2.ReportProgress((j + 1));
             }
         }
@@ -248,7 +250,7 @@ namespace blueCow
             var chart = (Chart)e.Argument;
             for (int j = 0; j < numericUpDown6.Value; j++)
             {
-                _opt.OptimiseBidsWithConstraints(_ga.GetPopulation(), _dbh,SysConfig.selectionMethod);
+                _opt.OptimiseBidsWithConstraints(_ga.GetPopulation(), _dbh,SysConfig.selectionMethod, Convert.ToInt32(numericUpDown8.Value));
                 backgroundWorker3.ReportProgress(j + 1);
             }
         }
@@ -271,11 +273,6 @@ namespace blueCow
             }
             Individual best = _ga.GetFittestIndividual();
             listBox9.Items.Add("Generation " + e.ProgressPercentage + ": " + best.ObjectiveValue.ToString());
-        }
-
-        private void backgroundWorker1_DoWork(object sender, DoWorkEventArgs e)
-        {
-
         }
 
         private void button6_Click(object sender, EventArgs e)

@@ -64,5 +64,7 @@ namespace blueCow.Lib
         public static int oceaniaCityLimitMax = 10;
 
         public static int maxTourGenerations = 100;
+
+        public static string replacementMethod = "child to parent";
     }
 }

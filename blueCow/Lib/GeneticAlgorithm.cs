@@ -11,7 +11,6 @@ namespace blueCow.Lib
     {
         private Random _rand;
         private List<Individual> _population;
-        private List<Individual> _selectedMembers;
 
         public GeneticAlgorithm()
         {
@@ -56,7 +55,7 @@ namespace blueCow.Lib
                     // set the random index to true (will visit)
                     ind.Cities[index] = true;
                 }
-                ind.GenerateTours(dbh);
+                ind.GenerateTours(dbh,_rand);
                 ind.CountriesVisited = numCities;
                 _population.Add(ind);
             }
@@ -169,7 +168,7 @@ namespace blueCow.Lib
         }
 
         // stochastic acceptance
-        public Tour RouletteSelectTour(List<Tour> tours)
+        public Tour RouletteSelectTour(List<Tour> tours, Tour dontSelect = null)
         {
             // get all fitnesses
             long[] fitnesses = new long[tours.Count];
@@ -181,13 +180,20 @@ namespace blueCow.Lib
             long maxFitness = fitnesses.Max();
             if (maxFitness == 0)
             {
-                // nothing to optimise just return first ind
-                return tours[0];
+                // nothing to optimise just return random ind
+                return tours[_rand.Next(0,tours.Count - 1)];
             }
             while (true)
             {
                 // randomly select a member
                 Tour ind = tours[_rand.Next(0, tours.Count - 1)];
+                //if(dontSelect != null)
+                //{
+                //    if (ind.TravelOrder.OrderAndStringEquals(dontSelect.TravelOrder))
+                //    {
+                //        continue;
+                //    }
+                //}
                 // get probablity and generate random number between 0 and 1 if probablity greater than or equal to number return ind
                 double probability = 1 - Convert.ToDouble(ind.Violation) / Convert.ToDouble(maxFitness);
                 if (Convert.ToDouble(_rand.Next(0, 100)) / 100 <= probability)
@@ -249,6 +255,12 @@ namespace blueCow.Lib
             return ind;
         }
 
+        public List<Tour> ReplaceParentTour(List<Tour> tours, Tour parent, Tour child)
+        {
+            tours[tours.IndexOf(parent)] = child;
+            return tours;
+        }
+
         public bool[] CrossoverBids(bool[] parent1, bool[] parent2)
         {
             int xOverPoint = _rand.Next(0, Convert.ToInt32(Math.Round(Convert.ToDouble(parent1.Length/2))));
@@ -285,7 +297,7 @@ namespace blueCow.Lib
         }
 
         // stochastic acceptance
-        public Individual RouletteSelectBids(List<Individual> inds)
+        public Individual RouletteSelectBids(List<Individual> inds, Individual dontSelect = null)
         {
             // get all fitnesses
             long[] fitnesses = new long[inds.Count];
@@ -299,6 +311,13 @@ namespace blueCow.Lib
             {
                 // randomly select a member
                 Individual ind = inds[_rand.Next(0, inds.Count - 1)];
+                if (dontSelect != null)
+                {
+                    if (ind.Cities.OrderAndBoolEquals(dontSelect.Cities))
+                    {
+                        continue;
+                    }
+                }
                 double probability = Convert.ToDouble(ind.ObjectiveValue) / Convert.ToDouble(maxFitness);
                 if (Convert.ToDouble(_rand.Next(0, 100)) / 100 <= probability)
                 {
