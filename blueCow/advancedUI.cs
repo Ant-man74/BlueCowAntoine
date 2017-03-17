@@ -116,6 +116,7 @@ namespace blueCow
             chart1.ChartAreas[0].AxisX.Minimum = 0;
             chart2.ChartAreas[0].AxisY.IsStartedFromZero = false;
             chart2.ChartAreas[0].AxisY.Minimum = _ga.GetFittestIndividual().ObjectiveValue;
+            chart2.Series[0].Points.AddXY(0, _ga.GetFittestIndividual().ObjectiveValue);
             chart1.Series[0].Points.AddXY(0, ((Tour)_ga.GetFittestTour(_ga.GetPopulation()[0].TourPopulation)).Violation);
             listBox2.Items.Clear();
             listBox9.Items.Clear();
