@@ -38,10 +38,16 @@ namespace blueCow
         private void minMaxValidation(int comparaison, TextBox TextBoxMin, TextBox TextBoxMax, string type, CancelEventArgs e)
         {
             //initialisation of ranges
-            int[] rangeCity = new int[2] { 5, 100 };
+            int[] rangeCity = new int[2] { 1, 203 };
             int[] rangeTour = new int[2] { 0, 1000000000 };
             int[] rangeDistance = new int[2] { 0, 1000000000 };
-            int[][] allRanges = new int[][] { rangeCity, rangeTour, rangeDistance };
+            int[] rangeNA = new int[2] { 1, 23 };
+            int[] rangeSA = new int[2] { 1, 12 };
+            int[] rangeAF = new int[2] { 1, 54 };
+            int[] rangeAS = new int[2] { 1, 44 };
+            int[] rangeEU = new int[2] { 1, 47 };
+            int[] rangeOC = new int[2] { 1, 14 };
+            int[][] allRanges = new int[][] { rangeCity, rangeTour, rangeDistance, rangeNA, rangeSA, rangeAF, rangeAS, rangeEU, rangeOC };
 
             //other variable
             string errorMsg;
@@ -50,6 +56,12 @@ namespace blueCow
             typeAssociation.Add("city", 0);
             typeAssociation.Add("tour", 1);
             typeAssociation.Add("distance", 2);
+            typeAssociation.Add("rangeNA", 3);
+            typeAssociation.Add("rangeSA", 4);
+            typeAssociation.Add("rangeAF", 5);
+            typeAssociation.Add("rangeAS", 6);
+            typeAssociation.Add("rangeEU", 7);
+            typeAssociation.Add("rangeOC", 8);
 
             // if 0 then it's minimum else its max
             if (comparaison == 0)
@@ -153,7 +165,7 @@ namespace blueCow
         }
 
         /// <summary>
-        /// Check the capital per continent field
+        /// OBSOLETE Check the capital per continent field
         /// </summary>
         /// <param name="textBoxContinent">The textBox to check</param>
         /// <param name="continent">the continent (NA,EU,SA,AS,OC,AF)</param>
@@ -249,14 +261,7 @@ namespace blueCow
         }
 
 
-        private void weigthCityValidating(object sender, CancelEventArgs e)
-        {
-            this.floatValidation(txtBoxCityNumberWeigth, e);
-        }
-        private void weigthCityValidated(object sender, EventArgs e)
-        {
-            this.errorProvider1.SetError(txtBoxCityNumberWeigth, "");
-        }
+       
 
 
         private void weigthDistanceValidating(object sender, CancelEventArgs e)
@@ -280,62 +285,110 @@ namespace blueCow
 
 
         private void NACityValidating(object sender, CancelEventArgs e)
-        {
-            this.maxCapitalValidation(txtBoxNACity, "NA", e);
+        {            
+            this.minMaxValidation(0, txtBoxNACity, txtBoxNAMax, "rangeNA", e);
         }
         private void NACityValidated(object sender, EventArgs e)
         {
             this.errorProvider1.SetError(txtBoxNACity, "");
         }
+        private void NACityMaxValidating(object sender, CancelEventArgs e)
+        {
+            this.minMaxValidation(1, txtBoxNACity, txtBoxNAMax, "rangeNA", e);
+        }
+        private void NACityMaxValidated(object sender, EventArgs e)
+        {
+            this.errorProvider1.SetError(txtBoxNAMax, "");
+        }
 
 
         private void EUCityValidating(object sender, CancelEventArgs e)
         {
-            this.maxCapitalValidation(txtBoxEUCity, "EU", e);
+            this.minMaxValidation(0, txtBoxEUCity, txtBoxEUMax, "rangeEU", e); 
         }
         private void EUCityValidated(object sender, EventArgs e)
         {
             this.errorProvider1.SetError(txtBoxEUCity, "");
         }
+        private void EUCityMaxValidating(object sender, CancelEventArgs e)
+        {
+            this.minMaxValidation(1, txtBoxEUCity, txtBoxEUMax, "rangeNA", e);
+        }
+        private void EUCityMaxValidated(object sender, EventArgs e)
+        {
+            this.errorProvider1.SetError(txtBoxEUMax, "");
+        }
 
 
         private void SACityValidating(object sender, CancelEventArgs e)
         {
-            this.maxCapitalValidation(txtBoxEUCity, "SA", e);
+            this.minMaxValidation(0, txtBoxSACity, txtBoxSAMax, "rangeSA", e);            
         }
         private void SACityValidated(object sender, EventArgs e)
         {
             this.errorProvider1.SetError(txtBoxSACity, "");
         }
+        private void SACityMaxValidating(object sender, CancelEventArgs e)
+        {
+            this.minMaxValidation(1, txtBoxSACity, txtBoxSAMax, "rangeSA", e);
+        }
+        private void SACityMaxValidated(object sender, EventArgs e)
+        {
+            this.errorProvider1.SetError(txtBoxSAMax, "");
+        }
 
 
         private void ASCityValidating(object sender, CancelEventArgs e)
         {
-            this.maxCapitalValidation(txtBoxASCity, "AS", e);
+            this.minMaxValidation(0, txtBoxASCity, txtBoxASMax, "rangeAS", e);
         }
         private void ASCityValidated(object sender, EventArgs e)
         {
             this.errorProvider1.SetError(txtBoxASCity, "");
         }
+        private void ASCityMaxValidating(object sender, CancelEventArgs e)
+        {
+            this.minMaxValidation(1, txtBoxASCity, txtBoxASMax, "rangeSA", e);
+        }
+        private void ASCityMaxValidated(object sender, EventArgs e)
+        {
+            this.errorProvider1.SetError(txtBoxASMax, "");
+        }
 
 
         private void OCCityValidating(object sender, CancelEventArgs e)
         {
-            this.maxCapitalValidation(txtBoxOCCity, "OC", e);
+            this.minMaxValidation(0, txtBoxOCCity, txtBoxOCMax, "rangeOC", e);
         }
         private void OCCityValidated(object sender, EventArgs e)
         {
             this.errorProvider1.SetError(txtBoxOCCity, "");
         }
+        private void OCCityMaxValidating(object sender, CancelEventArgs e)
+        {
+            this.minMaxValidation(1, txtBoxOCCity, txtBoxOCMax, "rangeOC", e);
+        }
+        private void OCCityMaxValidated(object sender, EventArgs e)
+        {
+            this.errorProvider1.SetError(txtBoxOCMax, "");
+        }
 
 
         private void AFCityValidating(object sender, CancelEventArgs e)
         {
-            this.maxCapitalValidation(txtBoxAFCity, "AF", e);
+            this.minMaxValidation(0, txtBoxAFCity, txtBoxAFMax, "rangeAF", e);
         }
         private void AFCityValidated(object sender, EventArgs e)
         {
             this.errorProvider1.SetError(txtBoxAFCity, "");
+        }
+        private void AFCityMaxValidating(object sender, CancelEventArgs e)
+        {
+            this.minMaxValidation(1, txtBoxAFCity, txtBoxAFMax, "rangeAF", e);
+        }
+        private void AFCityMaxValidated(object sender, EventArgs e)
+        {
+            this.errorProvider1.SetError(txtBoxAFMax, "");
         }
 
         private void btnExceptionAdd_Click(object sender, EventArgs e)
@@ -414,7 +467,7 @@ namespace blueCow
 
             if (int.TryParse(randomExceptionNumber.Text, out tryParse))
             {
-                for (int i = 0; i <= Int32.Parse(randomExceptionNumber.Text); i++)
+                for (int i = 0; i < Int32.Parse(randomExceptionNumber.Text); i++)
                 {
                     count1 = rnd.Next(1, 203);
                     count2 = rnd.Next(1, 203);
@@ -456,56 +509,74 @@ namespace blueCow
             SysConfig.samericanCityLimit = Int32.Parse(txtBoxSACity.Text);
             SysConfig.asiaCityLimit = Int32.Parse(txtBoxASCity.Text);
             SysConfig.oceaniaCityLimit = Int32.Parse(txtBoxOCCity.Text);
-            long continentWeigth = long.Parse(txtBoxContinentWeigth.Text);
+
+            SysConfig.africanCityLimitMax = Int32.Parse(txtBoxAFMax.Text);
+            SysConfig.europeanCityLimitMax = Int32.Parse(txtBoxEUMax.Text);
+            SysConfig.namericaCityLimitMax = Int32.Parse(txtBoxNAMax.Text);
+            SysConfig.oceaniaCityLimitMax = Int32.Parse(txtBoxOCMax.Text);
+            SysConfig.asiaCityLimitMax = Int32.Parse(txtBoxASMax.Text);
+            SysConfig.samericanCityLimitMax = Int32.Parse(txtBoxSAMax.Text);
 
             //number of city for a valid tour
             int minimumCityNumber = Int32.Parse(txtBoxCityNumberMin.Text);
             int maximumCityNumber = Int32.Parse(txtBoxCityNumberMax.Text);
-            //float weigthCityNumber = float.Parse(txtBoxCityNumberWeigth.Text);
 
-            //distance for a valid tour
-            int minimumTourLength = Int32.Parse(txtBoxTourMin.Text);
-            int maximumTourLength = Int32.Parse(txtBoxTourMax.Text);
-            long weigthTourLength = long.Parse(txtBoxTourWeigth.Text);
-
-            //distance between cities
-            int minimumDistance = Int32.Parse(txtBoxDistanceMin.Text);
-            int maximumDistance = Int32.Parse(txtBoxDistanceMax.Text);
-            long weigthDistance = long.Parse(txtBoxDistanceWeigth.Text);
-
-            long exceptionWeigth = long.Parse(txtBoxExceptionWeigth.Text);
-
-            string[] stringSeparators = new string[] { "|" };
-            List<string[]> illegalHops = new List<string[]>();
-            string[] idArrayCombo;
-
-            for (int i = 0; i < dataGridViewExceptionDisplay.RowCount; i++)
+            if (SysConfig.africanCityLimitMax + SysConfig.europeanCityLimitMax + SysConfig.namericaCityLimitMax + SysConfig.oceaniaCityLimitMax + SysConfig.asiaCityLimitMax + SysConfig.samericanCityLimitMax < minimumCityNumber)
             {
-                string valueId = dataGridViewExceptionDisplay[2, i].Value.ToString();
-                idArrayCombo = new string[2];
-                idArrayCombo = valueId.Split(stringSeparators, StringSplitOptions.None);
-                illegalHops.Add(idArrayCombo);
-            }
+                lblWarning.Text = "The combined maximum city per continent is lower than the minimum city required for a valid tour";
+            }else if(SysConfig.africanCityLimit + SysConfig.europeanCityLimit + SysConfig.namericaCityLimit + SysConfig.samericanCityLimit + SysConfig.asiaCityLimit + SysConfig.oceaniaCityLimit > maximumCityNumber)
+            {
+                lblWarning.Text = "The combined minimul city per continent is higher than the maximum city required for a valid tour";
+            }else
+            {
+                lblWarning.Text = "";
+                long continentWeigth = long.Parse(txtBoxContinentWeigth.Text);
 
-            SysConfig.minCities = minimumCityNumber;
-            SysConfig.maxCities = maximumCityNumber;
-            SysConfig.maxTotalDist = maximumTourLength;
-            SysConfig.minTotalDist = minimumTourLength;
-            SysConfig.maxHopDist = maximumDistance;
-            SysConfig.minHopDist = minimumDistance;
-            SysConfig.illegalHops = illegalHops;
 
-            SysConfig.illegalHopePenalty = exceptionWeigth;
-            SysConfig.hopDistPenalty = weigthDistance;
-            SysConfig.totalDistPenalty = weigthTourLength;
-            SysConfig.continentPenalty = continentWeigth;
+                //float weigthCityNumber = float.Parse(txtBoxCityNumberWeigth.Text);
 
-            advancedUI advancedSettings = new advancedUI();
-            advancedSettings.Show();
-            
+                //distance for a valid tour
+                int minimumTourLength = Int32.Parse(txtBoxTourMin.Text);
+                int maximumTourLength = Int32.Parse(txtBoxTourMax.Text);
+                long weigthTourLength = long.Parse(txtBoxTourWeigth.Text);
+
+                //distance between cities
+                int minimumDistance = Int32.Parse(txtBoxDistanceMin.Text);
+                int maximumDistance = Int32.Parse(txtBoxDistanceMax.Text);
+                long weigthDistance = long.Parse(txtBoxDistanceWeigth.Text);
+
+                long exceptionWeigth = long.Parse(txtBoxExceptionWeigth.Text);
+
+                string[] stringSeparators = new string[] { "|" };
+                List<string[]> illegalHops = new List<string[]>();
+                string[] idArrayCombo;
+
+                for (int i = 0; i < dataGridViewExceptionDisplay.RowCount; i++)
+                {
+                    string valueId = dataGridViewExceptionDisplay[2, i].Value.ToString();
+                    idArrayCombo = new string[2];
+                    idArrayCombo = valueId.Split(stringSeparators, StringSplitOptions.None);
+                    illegalHops.Add(idArrayCombo);
+                }
+
+                SysConfig.minCities = minimumCityNumber;
+                SysConfig.maxCities = maximumCityNumber;
+                SysConfig.maxTotalDist = maximumTourLength;
+                SysConfig.minTotalDist = minimumTourLength;
+                SysConfig.maxHopDist = maximumDistance;
+                SysConfig.minHopDist = minimumDistance;
+                SysConfig.illegalHops = illegalHops;
+
+                SysConfig.illegalHopePenalty = exceptionWeigth;
+                SysConfig.hopDistPenalty = weigthDistance;
+                SysConfig.totalDistPenalty = weigthTourLength;
+                SysConfig.continentPenalty = continentWeigth;
+
+                advancedUI advancedSettings = new advancedUI();
+                advancedSettings.Show();
+            }           
 
         }
-
     }
       
 }

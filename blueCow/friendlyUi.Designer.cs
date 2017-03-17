@@ -47,7 +47,6 @@
             this.txtBoxOCCity = new System.Windows.Forms.TextBox();
             this.txtBoxTourMax = new System.Windows.Forms.TextBox();
             this.txtBoxASCity = new System.Windows.Forms.TextBox();
-            this.txtBoxCityNumberWeigth = new System.Windows.Forms.TextBox();
             this.lblOCCity = new System.Windows.Forms.Label();
             this.txtBoxTourWeigth = new System.Windows.Forms.TextBox();
             this.lblASCity = new System.Windows.Forms.Label();
@@ -86,11 +85,18 @@
             this.randomExceptionNumber = new System.Windows.Forms.TextBox();
             this.btnRandomize = new System.Windows.Forms.Button();
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
+            this.idaDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.numaDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.continentsBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.distances_vs2015DataSet = new blueCow.Distances_vs2015DataSet();
             this.continentsTableAdapter = new blueCow.Distances_vs2015DataSetTableAdapters.continentsTableAdapter();
-            this.idaDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.numaDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.txtBoxNAMax = new System.Windows.Forms.TextBox();
+            this.txtBoxSAMax = new System.Windows.Forms.TextBox();
+            this.txtBoxAFMax = new System.Windows.Forms.TextBox();
+            this.txtBoxASMax = new System.Windows.Forms.TextBox();
+            this.txtBoxEUMax = new System.Windows.Forms.TextBox();
+            this.txtBoxOCMax = new System.Windows.Forms.TextBox();
+            this.lblWarning = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.groupBoxExcept.SuspendLayout();
             this.panelGenerated.SuspendLayout();
@@ -108,6 +114,13 @@
             // 
             this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
+            this.groupBox1.Controls.Add(this.lblWarning);
+            this.groupBox1.Controls.Add(this.txtBoxOCMax);
+            this.groupBox1.Controls.Add(this.txtBoxEUMax);
+            this.groupBox1.Controls.Add(this.txtBoxASMax);
+            this.groupBox1.Controls.Add(this.txtBoxAFMax);
+            this.groupBox1.Controls.Add(this.txtBoxSAMax);
+            this.groupBox1.Controls.Add(this.txtBoxNAMax);
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.txtBoxContinentWeigth);
             this.groupBox1.Controls.Add(this.lblMaxOC);
@@ -125,7 +138,6 @@
             this.groupBox1.Controls.Add(this.txtBoxOCCity);
             this.groupBox1.Controls.Add(this.txtBoxTourMax);
             this.groupBox1.Controls.Add(this.txtBoxASCity);
-            this.groupBox1.Controls.Add(this.txtBoxCityNumberWeigth);
             this.groupBox1.Controls.Add(this.lblOCCity);
             this.groupBox1.Controls.Add(this.txtBoxTourWeigth);
             this.groupBox1.Controls.Add(this.lblASCity);
@@ -175,7 +187,7 @@
             // lblMaxOC
             // 
             this.lblMaxOC.AutoSize = true;
-            this.lblMaxOC.Location = new System.Drawing.Point(304, 400);
+            this.lblMaxOC.Location = new System.Drawing.Point(356, 400);
             this.lblMaxOC.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblMaxOC.Name = "lblMaxOC";
             this.lblMaxOC.Size = new System.Drawing.Size(45, 13);
@@ -195,7 +207,7 @@
             // lblMaxEU
             // 
             this.lblMaxEU.AutoSize = true;
-            this.lblMaxEU.Location = new System.Drawing.Point(304, 347);
+            this.lblMaxEU.Location = new System.Drawing.Point(356, 347);
             this.lblMaxEU.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblMaxEU.Name = "lblMaxEU";
             this.lblMaxEU.Size = new System.Drawing.Size(45, 13);
@@ -218,7 +230,7 @@
             // lblMaxAS
             // 
             this.lblMaxAS.AutoSize = true;
-            this.lblMaxAS.Location = new System.Drawing.Point(304, 293);
+            this.lblMaxAS.Location = new System.Drawing.Point(356, 293);
             this.lblMaxAS.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblMaxAS.Name = "lblMaxAS";
             this.lblMaxAS.Size = new System.Drawing.Size(45, 13);
@@ -294,13 +306,13 @@
             this.txtBoxTourMin.Name = "txtBoxTourMin";
             this.txtBoxTourMin.Size = new System.Drawing.Size(66, 20);
             this.txtBoxTourMin.TabIndex = 57;
-            this.txtBoxTourMin.Text = "0";
+            this.txtBoxTourMin.Text = "100000";
             this.txtBoxTourMin.Validating += new System.ComponentModel.CancelEventHandler(this.minTourValidating);
             this.txtBoxTourMin.Validated += new System.EventHandler(this.minTourValidated);
             // 
             // txtBoxOCCity
             // 
-            this.txtBoxOCCity.Location = new System.Drawing.Point(302, 378);
+            this.txtBoxOCCity.Location = new System.Drawing.Point(354, 378);
             this.txtBoxOCCity.Margin = new System.Windows.Forms.Padding(2);
             this.txtBoxOCCity.Name = "txtBoxOCCity";
             this.txtBoxOCCity.Size = new System.Drawing.Size(55, 20);
@@ -316,13 +328,13 @@
             this.txtBoxTourMax.Name = "txtBoxTourMax";
             this.txtBoxTourMax.Size = new System.Drawing.Size(57, 20);
             this.txtBoxTourMax.TabIndex = 58;
-            this.txtBoxTourMax.Text = "100000000";
+            this.txtBoxTourMax.Text = "300000";
             this.txtBoxTourMax.Validating += new System.ComponentModel.CancelEventHandler(this.maxTourValidating);
             this.txtBoxTourMax.Validated += new System.EventHandler(this.maxTourValidated);
             // 
             // txtBoxASCity
             // 
-            this.txtBoxASCity.Location = new System.Drawing.Point(302, 270);
+            this.txtBoxASCity.Location = new System.Drawing.Point(354, 270);
             this.txtBoxASCity.Margin = new System.Windows.Forms.Padding(2);
             this.txtBoxASCity.Name = "txtBoxASCity";
             this.txtBoxASCity.Size = new System.Drawing.Size(55, 20);
@@ -331,23 +343,10 @@
             this.txtBoxASCity.Validating += new System.ComponentModel.CancelEventHandler(this.ASCityValidating);
             this.txtBoxASCity.Validated += new System.EventHandler(this.ASCityValidated);
             // 
-            // txtBoxCityNumberWeigth
-            // 
-            this.txtBoxCityNumberWeigth.Enabled = false;
-            this.txtBoxCityNumberWeigth.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.txtBoxCityNumberWeigth.Location = new System.Drawing.Point(402, 77);
-            this.txtBoxCityNumberWeigth.Margin = new System.Windows.Forms.Padding(2);
-            this.txtBoxCityNumberWeigth.Name = "txtBoxCityNumberWeigth";
-            this.txtBoxCityNumberWeigth.Size = new System.Drawing.Size(73, 20);
-            this.txtBoxCityNumberWeigth.TabIndex = 56;
-            this.txtBoxCityNumberWeigth.Text = "1";
-            this.txtBoxCityNumberWeigth.Validating += new System.ComponentModel.CancelEventHandler(this.weigthCityValidating);
-            this.txtBoxCityNumberWeigth.Validated += new System.EventHandler(this.weigthCityValidated);
-            // 
             // lblOCCity
             // 
             this.lblOCCity.AutoSize = true;
-            this.lblOCCity.Location = new System.Drawing.Point(246, 381);
+            this.lblOCCity.Location = new System.Drawing.Point(298, 381);
             this.lblOCCity.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblOCCity.Name = "lblOCCity";
             this.lblOCCity.Size = new System.Drawing.Size(47, 13);
@@ -368,7 +367,7 @@
             // lblASCity
             // 
             this.lblASCity.AutoSize = true;
-            this.lblASCity.Location = new System.Drawing.Point(247, 272);
+            this.lblASCity.Location = new System.Drawing.Point(299, 272);
             this.lblASCity.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblASCity.Name = "lblASCity";
             this.lblASCity.Size = new System.Drawing.Size(27, 13);
@@ -382,7 +381,7 @@
             this.txtBoxDistanceMin.Name = "txtBoxDistanceMin";
             this.txtBoxDistanceMin.Size = new System.Drawing.Size(66, 20);
             this.txtBoxDistanceMin.TabIndex = 60;
-            this.txtBoxDistanceMin.Text = "0";
+            this.txtBoxDistanceMin.Text = "1000";
             this.txtBoxDistanceMin.Validating += new System.ComponentModel.CancelEventHandler(this.minDistanceValidating);
             this.txtBoxDistanceMin.Validated += new System.EventHandler(this.minDistanceValidated);
             // 
@@ -404,7 +403,7 @@
             this.txtBoxDistanceMax.Name = "txtBoxDistanceMax";
             this.txtBoxDistanceMax.Size = new System.Drawing.Size(57, 20);
             this.txtBoxDistanceMax.TabIndex = 61;
-            this.txtBoxDistanceMax.Text = "100000000";
+            this.txtBoxDistanceMax.Text = "8000";
             this.txtBoxDistanceMax.Validating += new System.ComponentModel.CancelEventHandler(this.maxDistanceValidating);
             this.txtBoxDistanceMax.Validated += new System.EventHandler(this.maxDistanceValidated);
             // 
@@ -431,7 +430,7 @@
             // 
             // txtBoxEUCity
             // 
-            this.txtBoxEUCity.Location = new System.Drawing.Point(302, 325);
+            this.txtBoxEUCity.Location = new System.Drawing.Point(354, 325);
             this.txtBoxEUCity.Margin = new System.Windows.Forms.Padding(2);
             this.txtBoxEUCity.Name = "txtBoxEUCity";
             this.txtBoxEUCity.Size = new System.Drawing.Size(55, 20);
@@ -453,7 +452,7 @@
             // lblEUCity
             // 
             this.lblEUCity.AutoSize = true;
-            this.lblEUCity.Location = new System.Drawing.Point(246, 330);
+            this.lblEUCity.Location = new System.Drawing.Point(298, 330);
             this.lblEUCity.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblEUCity.Name = "lblEUCity";
             this.lblEUCity.Size = new System.Drawing.Size(41, 13);
@@ -688,7 +687,6 @@
             // 
             // txtBoxExceptionWeigth
             // 
-            this.txtBoxExceptionWeigth.Enabled = false;
             this.txtBoxExceptionWeigth.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.txtBoxExceptionWeigth.Location = new System.Drawing.Point(131, 13);
             this.txtBoxExceptionWeigth.Margin = new System.Windows.Forms.Padding(2);
@@ -756,6 +754,20 @@
             // 
             this.errorProvider1.ContainerControl = this;
             // 
+            // idaDataGridViewTextBoxColumn
+            // 
+            this.idaDataGridViewTextBoxColumn.DataPropertyName = "ida";
+            this.idaDataGridViewTextBoxColumn.HeaderText = "Country code";
+            this.idaDataGridViewTextBoxColumn.Name = "idaDataGridViewTextBoxColumn";
+            this.idaDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // numaDataGridViewTextBoxColumn
+            // 
+            this.numaDataGridViewTextBoxColumn.DataPropertyName = "numa";
+            this.numaDataGridViewTextBoxColumn.HeaderText = "Id";
+            this.numaDataGridViewTextBoxColumn.Name = "numaDataGridViewTextBoxColumn";
+            this.numaDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
             // continentsBindingSource1
             // 
             this.continentsBindingSource1.DataMember = "continents";
@@ -770,19 +782,80 @@
             // 
             this.continentsTableAdapter.ClearBeforeFill = true;
             // 
-            // idaDataGridViewTextBoxColumn
+            // txtBoxNAMax
             // 
-            this.idaDataGridViewTextBoxColumn.DataPropertyName = "ida";
-            this.idaDataGridViewTextBoxColumn.HeaderText = "Country code";
-            this.idaDataGridViewTextBoxColumn.Name = "idaDataGridViewTextBoxColumn";
-            this.idaDataGridViewTextBoxColumn.ReadOnly = true;
+            this.txtBoxNAMax.Location = new System.Drawing.Point(191, 270);
+            this.txtBoxNAMax.Margin = new System.Windows.Forms.Padding(2);
+            this.txtBoxNAMax.Name = "txtBoxNAMax";
+            this.txtBoxNAMax.Size = new System.Drawing.Size(48, 20);
+            this.txtBoxNAMax.TabIndex = 90;
+            this.txtBoxNAMax.Text = "10";
+            this.txtBoxNAMax.Validating += new System.ComponentModel.CancelEventHandler(this.NACityMaxValidating);
+            this.txtBoxNAMax.Validated += new System.EventHandler(this.NACityMaxValidated);
             // 
-            // numaDataGridViewTextBoxColumn
+            // txtBoxSAMax
             // 
-            this.numaDataGridViewTextBoxColumn.DataPropertyName = "numa";
-            this.numaDataGridViewTextBoxColumn.HeaderText = "Id";
-            this.numaDataGridViewTextBoxColumn.Name = "numaDataGridViewTextBoxColumn";
-            this.numaDataGridViewTextBoxColumn.ReadOnly = true;
+            this.txtBoxSAMax.Location = new System.Drawing.Point(192, 327);
+            this.txtBoxSAMax.Margin = new System.Windows.Forms.Padding(2);
+            this.txtBoxSAMax.Name = "txtBoxSAMax";
+            this.txtBoxSAMax.Size = new System.Drawing.Size(48, 20);
+            this.txtBoxSAMax.TabIndex = 91;
+            this.txtBoxSAMax.Text = "10";
+            this.txtBoxSAMax.Validating += new System.ComponentModel.CancelEventHandler(this.SACityMaxValidating);
+            this.txtBoxSAMax.Validated += new System.EventHandler(this.SACityMaxValidated);
+            // 
+            // txtBoxAFMax
+            // 
+            this.txtBoxAFMax.Location = new System.Drawing.Point(192, 378);
+            this.txtBoxAFMax.Margin = new System.Windows.Forms.Padding(2);
+            this.txtBoxAFMax.Name = "txtBoxAFMax";
+            this.txtBoxAFMax.Size = new System.Drawing.Size(48, 20);
+            this.txtBoxAFMax.TabIndex = 92;
+            this.txtBoxAFMax.Text = "10";
+            this.txtBoxAFMax.Validating += new System.ComponentModel.CancelEventHandler(this.AFCityMaxValidating);
+            this.txtBoxAFMax.Validated += new System.EventHandler(this.AFCityMaxValidated);
+            // 
+            // txtBoxASMax
+            // 
+            this.txtBoxASMax.Location = new System.Drawing.Point(427, 269);
+            this.txtBoxASMax.Margin = new System.Windows.Forms.Padding(2);
+            this.txtBoxASMax.Name = "txtBoxASMax";
+            this.txtBoxASMax.Size = new System.Drawing.Size(48, 20);
+            this.txtBoxASMax.TabIndex = 93;
+            this.txtBoxASMax.Text = "10";
+            this.txtBoxASMax.Validating += new System.ComponentModel.CancelEventHandler(this.ASCityMaxValidating);
+            this.txtBoxASMax.Validated += new System.EventHandler(this.ASCityMaxValidated);
+            // 
+            // txtBoxEUMax
+            // 
+            this.txtBoxEUMax.Location = new System.Drawing.Point(427, 324);
+            this.txtBoxEUMax.Margin = new System.Windows.Forms.Padding(2);
+            this.txtBoxEUMax.Name = "txtBoxEUMax";
+            this.txtBoxEUMax.Size = new System.Drawing.Size(48, 20);
+            this.txtBoxEUMax.TabIndex = 94;
+            this.txtBoxEUMax.Text = "10";
+            this.txtBoxEUMax.Validating += new System.ComponentModel.CancelEventHandler(this.EUCityMaxValidating);
+            this.txtBoxEUMax.Validated += new System.EventHandler(this.EUCityMaxValidated);
+            // 
+            // txtBoxOCMax
+            // 
+            this.txtBoxOCMax.Location = new System.Drawing.Point(427, 378);
+            this.txtBoxOCMax.Margin = new System.Windows.Forms.Padding(2);
+            this.txtBoxOCMax.Name = "txtBoxOCMax";
+            this.txtBoxOCMax.Size = new System.Drawing.Size(48, 20);
+            this.txtBoxOCMax.TabIndex = 95;
+            this.txtBoxOCMax.Text = "10";
+            this.txtBoxOCMax.Validating += new System.ComponentModel.CancelEventHandler(this.OCCityMaxValidating);
+            this.txtBoxOCMax.Validated += new System.EventHandler(this.OCCityMaxValidated);
+            // 
+            // lblWarning
+            // 
+            this.lblWarning.AutoSize = true;
+            this.lblWarning.BackColor = System.Drawing.SystemColors.Control;
+            this.lblWarning.Location = new System.Drawing.Point(13, 447);
+            this.lblWarning.Name = "lblWarning";
+            this.lblWarning.Size = new System.Drawing.Size(0, 13);
+            this.lblWarning.TabIndex = 96;
             // 
             // friendlyUi
             // 
@@ -831,7 +904,6 @@
         private System.Windows.Forms.TextBox txtBoxOCCity;
         private System.Windows.Forms.TextBox txtBoxTourMax;
         private System.Windows.Forms.TextBox txtBoxASCity;
-        private System.Windows.Forms.TextBox txtBoxCityNumberWeigth;
         private System.Windows.Forms.Label lblOCCity;
         private System.Windows.Forms.TextBox txtBoxTourWeigth;
         private System.Windows.Forms.Label lblASCity;
@@ -877,5 +949,12 @@
         private System.Windows.Forms.TextBox txtBoxExceptionWeigth;
         private System.Windows.Forms.DataGridViewTextBoxColumn idaDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn numaDataGridViewTextBoxColumn;
+        private System.Windows.Forms.TextBox txtBoxOCMax;
+        private System.Windows.Forms.TextBox txtBoxEUMax;
+        private System.Windows.Forms.TextBox txtBoxASMax;
+        private System.Windows.Forms.TextBox txtBoxAFMax;
+        private System.Windows.Forms.TextBox txtBoxSAMax;
+        private System.Windows.Forms.TextBox txtBoxNAMax;
+        private System.Windows.Forms.Label lblWarning;
     }
 }
