@@ -94,6 +94,7 @@ namespace blueCow
             SysConfig.tourPopSize = Convert.ToInt32(numericUpDown1.Value);
             SysConfig.crossOverRate = Convert.ToInt32(numericUpDown2.Value);
             SysConfig.mutationRate = Convert.ToInt32(numericUpDown5.Value);
+            SysConfig.stepSize = Convert.ToInt32(numericUpDown9.Value);
             SysConfig.maxTourGenerations = Convert.ToInt32(numericUpDown7.Value);
             progressBar1.Maximum = Convert.ToInt32(numericUpDown4.Value);
             List<Individual> inds = _opt.InitialisePopulation(Convert.ToInt32(numericUpDown4.Value), _dbh, progressBar1);
@@ -130,6 +131,7 @@ namespace blueCow
             SysConfig.tourPopSize = Convert.ToInt32(numericUpDown1.Value);
             SysConfig.crossOverRate = Convert.ToInt32(numericUpDown2.Value);
             SysConfig.mutationRate = Convert.ToInt32(numericUpDown5.Value);
+            SysConfig.stepSize = Convert.ToInt32(numericUpDown9.Value);
             SysConfig.maxTourGenerations = Convert.ToInt32(numericUpDown7.Value);
             progressBar1.Maximum = Convert.ToInt32(numericUpDown4.Value);
             List<Individual> inds = _opt.InitialiseDiversePopulation(Convert.ToInt32(numericUpDown4.Value), _dbh, progressBar1);
@@ -214,6 +216,7 @@ namespace blueCow
         {
             SysConfig.selectionMethod = comboBox1.Text;
             SysConfig.replacementMethod = comboBox2.Text;
+            SysConfig.stepSize = Convert.ToInt32(numericUpDown9.Value);
             progressBar2.Maximum = Convert.ToInt32(numericUpDown3.Value);
             backgroundWorker2.RunWorkerAsync(chart1);
         }
@@ -255,7 +258,20 @@ namespace blueCow
             listBox5.Items.Add("Tour Violation: " + best.TourViolation);
             listBox5.Items.Add("Continent Violation: " + best.ContinentViolation);
             listBox5.Items.Add("Num cities: " + best.CountriesVisited);
-                     
+            bool[] visited = new bool[SysConfig.chromeLength];
+            foreach (var i in inds)
+            {
+                for (var c = 0; c < i.Cities.Length; c++)
+                {
+                    if (i.Cities[c])
+                    {
+                        visited[c] = true;
+                    }
+                }
+            }
+            int citiesMapped = visited.Where(x => x == true).Count();
+            listBox8.Items.Clear();
+            listBox8.Items.Add(citiesMapped);
             return listBox5;
         }
 
