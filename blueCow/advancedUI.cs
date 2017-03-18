@@ -158,9 +158,8 @@ namespace blueCow
             ListBox Holder = null;
             Holder = ShowEvaluations();
             foreach (string line in Holder.Items)
-            {
                 beforeOptimize.Add(line);
-            }
+            
 
             bool[] visited = new bool[SysConfig.chromeLength];
             foreach (var i in inds)
@@ -196,10 +195,8 @@ namespace blueCow
             Holder = ShowEvaluations();
             List<string> tempHolder = new List<string>();
             foreach (string line in Holder.Items)
-            {
-                tempHolder.Add(line);
-                
-            }
+                tempHolder.Add(line);                
+           
             afterOptimize.Add(tempHolder.ToArray());                       
             string[] temp = { SysConfig.selectionMethod, SysConfig.replacementMethod, Convert.ToInt32(numericUpDown8.Value).ToString(), Convert.ToInt32(numericUpDown6.Value).ToString() };
             optimizeParameter.Add(temp);            
