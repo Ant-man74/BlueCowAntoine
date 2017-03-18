@@ -16,7 +16,8 @@ namespace blueCow
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            //Application.Run(new advancedUI());
+            //Application.Run(new advancedUI());      
+           
             Application.Run(new friendlyUi());
         }
     }

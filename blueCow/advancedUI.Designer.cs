@@ -58,6 +58,7 @@
             this.button9 = new System.Windows.Forms.Button();
             this.numericUpDown4 = new System.Windows.Forms.NumericUpDown();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.btnPdf = new System.Windows.Forms.Button();
             this.label21 = new System.Windows.Forms.Label();
             this.comboBox2 = new System.Windows.Forms.ComboBox();
             this.label20 = new System.Windows.Forms.Label();
@@ -160,6 +161,7 @@
             this.listBox2.SelectionMode = System.Windows.Forms.SelectionMode.MultiExtended;
             this.listBox2.Size = new System.Drawing.Size(198, 199);
             this.listBox2.TabIndex = 5;
+            this.listBox2.KeyDown += new System.Windows.Forms.KeyEventHandler(this.copyPastaPopulation);
             // 
             // listBox3
             // 
@@ -170,6 +172,7 @@
             this.listBox3.SelectionMode = System.Windows.Forms.SelectionMode.MultiExtended;
             this.listBox3.Size = new System.Drawing.Size(198, 199);
             this.listBox3.TabIndex = 9;
+            this.listBox3.KeyDown += new System.Windows.Forms.KeyEventHandler(this.copyPastaFitness);
             // 
             // label4
             // 
@@ -318,6 +321,7 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.btnPdf);
             this.groupBox1.Controls.Add(this.label21);
             this.groupBox1.Controls.Add(this.comboBox2);
             this.groupBox1.Controls.Add(this.label20);
@@ -347,10 +351,20 @@
             this.groupBox1.Controls.Add(this.progressBar3);
             this.groupBox1.Location = new System.Drawing.Point(12, 277);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(428, 513);
+            this.groupBox1.Size = new System.Drawing.Size(428, 540);
             this.groupBox1.TabIndex = 33;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Tour Optimisation";
+            // 
+            // btnPdf
+            // 
+            this.btnPdf.Location = new System.Drawing.Point(281, 490);
+            this.btnPdf.Name = "btnPdf";
+            this.btnPdf.Size = new System.Drawing.Size(141, 23);
+            this.btnPdf.TabIndex = 49;
+            this.btnPdf.Text = "Get PDF report";
+            this.btnPdf.UseVisualStyleBackColor = true;
+            this.btnPdf.Click += new System.EventHandler(this.btnPdf_Click);
             // 
             // label21
             // 
@@ -441,11 +455,11 @@
             // 
             // button5
             // 
-            this.button5.Location = new System.Drawing.Point(281, 463);
+            this.button5.Location = new System.Drawing.Point(281, 446);
             this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(141, 23);
+            this.button5.Size = new System.Drawing.Size(141, 36);
             this.button5.TabIndex = 50;
-            this.button5.Text = "Show Values";
+            this.button5.Text = "Add to report / show values";
             this.button5.UseVisualStyleBackColor = true;
             this.button5.Click += new System.EventHandler(this.button5_Click);
             // 
@@ -622,7 +636,7 @@
             this.chart1.ChartAreas.Add(chartArea1);
             legend1.Name = "Legend1";
             this.chart1.Legends.Add(legend1);
-            this.chart1.Location = new System.Drawing.Point(932, 500);
+            this.chart1.Location = new System.Drawing.Point(932, 527);
             this.chart1.Name = "chart1";
             series1.ChartArea = "ChartArea1";
             series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
@@ -642,6 +656,7 @@
             this.listBox4.SelectionMode = System.Windows.Forms.SelectionMode.MultiExtended;
             this.listBox4.Size = new System.Drawing.Size(198, 199);
             this.listBox4.TabIndex = 35;
+            this.listBox4.KeyDown += new System.Windows.Forms.KeyEventHandler(this.copyPastaConstraintViol);
             // 
             // label5
             // 
@@ -704,6 +719,7 @@
             this.listBox5.SelectionMode = System.Windows.Forms.SelectionMode.MultiExtended;
             this.listBox5.Size = new System.Drawing.Size(198, 121);
             this.listBox5.TabIndex = 39;
+            this.listBox5.KeyDown += new System.Windows.Forms.KeyEventHandler(this.copyPastaBest);
             // 
             // dataGridView1
             // 
@@ -726,7 +742,7 @@
             this.dataGridView1.ShowCellToolTips = false;
             this.dataGridView1.ShowEditingIcon = false;
             this.dataGridView1.ShowRowErrors = false;
-            this.dataGridView1.Size = new System.Drawing.Size(198, 208);
+            this.dataGridView1.Size = new System.Drawing.Size(198, 242);
             this.dataGridView1.TabIndex = 41;
             // 
             // dataGridView2
@@ -784,16 +800,17 @@
             // 
             this.listBox9.FormattingEnabled = true;
             this.listBox9.HorizontalScrollbar = true;
-            this.listBox9.Location = new System.Drawing.Point(686, 388);
+            this.listBox9.Location = new System.Drawing.Point(686, 396);
             this.listBox9.Name = "listBox9";
             this.listBox9.SelectionMode = System.Windows.Forms.SelectionMode.MultiExtended;
-            this.listBox9.Size = new System.Drawing.Size(198, 69);
+            this.listBox9.Size = new System.Drawing.Size(198, 95);
             this.listBox9.TabIndex = 46;
+            this.listBox9.KeyDown += new System.Windows.Forms.KeyEventHandler(this.copyPastaBestGene);
             // 
             // label18
             // 
             this.label18.AutoSize = true;
-            this.label18.Location = new System.Drawing.Point(683, 373);
+            this.label18.Location = new System.Drawing.Point(683, 380);
             this.label18.Name = "label18";
             this.label18.Size = new System.Drawing.Size(98, 13);
             this.label18.TabIndex = 47;
@@ -809,7 +826,7 @@
             this.groupBox2.Controls.Add(this.button8);
             this.groupBox2.Controls.Add(this.listBox7);
             this.groupBox2.Controls.Add(this.label8);
-            this.groupBox2.Location = new System.Drawing.Point(462, 500);
+            this.groupBox2.Location = new System.Drawing.Point(462, 527);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(456, 290);
             this.groupBox2.TabIndex = 48;
@@ -847,6 +864,7 @@
             this.Controls.Add(this.button1);
             this.Name = "advancedUI";
             this.Text = "Form1";
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.copyPastaPopulation);
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown4)).EndInit();
             this.groupBox1.ResumeLayout(false);
@@ -932,6 +950,7 @@
         private System.Windows.Forms.NumericUpDown numericUpDown8;
         private System.Windows.Forms.Label label21;
         private System.Windows.Forms.ComboBox comboBox2;
+        private System.Windows.Forms.Button btnPdf;
     }
 }
 

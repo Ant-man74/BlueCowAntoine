@@ -1,10 +1,13 @@
 ﻿using blueCow.Lib;
 using blueCow.Models;
+using iTextSharp.text;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Drawing.Imaging;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -18,6 +21,16 @@ namespace blueCow
         private DatabaseHelper _dbh;
         private GeneticAlgorithm _ga;
         private OptimisationController _opt;
+
+        //variable for pdf
+        private string typeOfPop;
+        private List<string> beforeOptimize = new List<string>();
+        private List<string[]> optimizeParameter = new List<string[]>();
+        private List<iTextSharp.text.Image> allGraph = new List<iTextSharp.text.Image>();
+        private Document report;
+        private List<string[]> afterOptimize = new List<string[]>();
+
+       
 
         public advancedUI()
         {
@@ -77,12 +90,13 @@ namespace blueCow
         //Initialize the population
         private void button9_Click(object sender, EventArgs e)
         {
+            typeOfPop = "Generate Pop Quick";
             SysConfig.tourPopSize = Convert.ToInt32(numericUpDown1.Value);
             SysConfig.crossOverRate = Convert.ToInt32(numericUpDown2.Value);
             SysConfig.mutationRate = Convert.ToInt32(numericUpDown5.Value);
             SysConfig.maxTourGenerations = Convert.ToInt32(numericUpDown7.Value);
             progressBar1.Maximum = Convert.ToInt32(numericUpDown4.Value);
-            List<Individual> inds = _opt.InitialisePopulation(Convert.ToInt32(numericUpDown4.Value), _dbh,progressBar1);
+            List<Individual> inds = _opt.InitialisePopulation(Convert.ToInt32(numericUpDown4.Value), _dbh, progressBar1);
             chart1.Series[0].Points.Clear();
             chart1.ChartAreas[0].AxisX.Minimum = 0;
             chart2.ChartAreas[0].AxisY.IsStartedFromZero = false;
@@ -100,12 +114,19 @@ namespace blueCow
                 }
                 listBox2.Items.Add(cities);
             }
-            ShowEvaluations();
+            //pdf info storing
+            ListBox Holder = null;
+            Holder = ShowEvaluations();
+            foreach (string line in Holder.Items)
+            {
+                beforeOptimize.Add(line);
+            }
         }
                
         //Initialize a diverse population I guess?
         private void button3_Click(object sender, EventArgs e)
         {
+            typeOfPop = "Generate Pop Diverse";
             SysConfig.tourPopSize = Convert.ToInt32(numericUpDown1.Value);
             SysConfig.crossOverRate = Convert.ToInt32(numericUpDown2.Value);
             SysConfig.mutationRate = Convert.ToInt32(numericUpDown5.Value);
@@ -130,7 +151,15 @@ namespace blueCow
                 }
                 listBox2.Items.Add(cities);
             }
-            ShowEvaluations();
+
+            //pdf info storing
+            ListBox Holder = null;
+            Holder = ShowEvaluations();
+            foreach (string line in Holder.Items)
+            {
+                beforeOptimize.Add(line);
+            }
+
             bool[] visited = new bool[SysConfig.chromeLength];
             foreach (var i in inds)
             {
@@ -155,12 +184,28 @@ namespace blueCow
             chart2.ChartAreas[0].AxisX.Minimum = 0;
             progressBar4.Maximum = Convert.ToInt32(numericUpDown6.Value);
             backgroundWorker3.RunWorkerAsync(chart2);
+            
         }
 
-        //force display of the last value, show value
+        //force display of the last value, show value and store all info for the pdf
         private void button5_Click(object sender, EventArgs e)
         {
-            ShowEvaluations();
+            ListBox Holder = null;
+            Holder = ShowEvaluations();
+            List<string> tempHolder = new List<string>();
+            foreach (string line in Holder.Items)
+            {
+                tempHolder.Add(line);
+                
+            }
+            afterOptimize.Add(tempHolder.ToArray());                       
+            string[] temp = { SysConfig.selectionMethod, SysConfig.replacementMethod, Convert.ToInt32(numericUpDown8.Value).ToString(), Convert.ToInt32(numericUpDown6.Value).ToString() };
+            optimizeParameter.Add(temp);            
+            var chartimage = new MemoryStream();            
+            chart2.SaveImage(chartimage, ChartImageFormat.Png);
+            iTextSharp.text.Image picture = iTextSharp.text.Image.GetInstance(chartimage.GetBuffer());
+            allGraph.Add(picture);
+
         }
 
 
@@ -173,7 +218,8 @@ namespace blueCow
             backgroundWorker2.RunWorkerAsync(chart1);
         }
 
-        private void ShowEvaluations()
+        //added a listbox return to retrieve result during runtime at different stages (before optimisation/ after)
+        private ListBox ShowEvaluations()
         {
             ObjectiveFunction obj = new ObjectiveFunction();
             List<Individual> inds = _ga.EvaluatePopulation(obj.Evaluate, _dbh);
@@ -181,6 +227,7 @@ namespace blueCow
             listBox4.Items.Clear();
             dataGridView2.Rows.Clear();
             dataGridView2.ColumnCount = SysConfig.chromeLength;
+            
             for (var i = 0; i < inds.Count; i++)
             {
                 listBox3.Items.Add(inds[i].ObjectiveValue.ToString());
@@ -202,11 +249,14 @@ namespace blueCow
             {
                 cities += c + ", ";
             }
+
             listBox5.Items.Add(cities);
             listBox5.Items.Add("Fitness: " + best.ObjectiveValue);
             listBox5.Items.Add("Tour Violation: " + best.TourViolation);
             listBox5.Items.Add("Continent Violation: " + best.ContinentViolation);
             listBox5.Items.Add("Num cities: " + best.CountriesVisited);
+                     
+            return listBox5;
         }
 
         private void backgroundWorker2_DoWork(object sender, DoWorkEventArgs e)
@@ -279,6 +329,72 @@ namespace blueCow
         private void button6_Click(object sender, EventArgs e)
         {
             _dbh.SortOutTheGoddamMissingCountryCodesRandomly(new Random());
+        }
+
+        //on key down in a list box all item will be copied so you can paste them elsewhere, can be deleted as we have the report now
+        public void CopyListBox(ListBox list)
+        {
+
+            StringBuilder sb = new StringBuilder();
+            foreach (string item in list.SelectedItems)
+            {
+                sb.Append(item + ",\n");
+            }
+
+            Clipboard.SetDataObject(sb.ToString());
+
+        }
+
+        private void copyPastaPopulation(object sender, KeyEventArgs e)
+        {
+            CopyListBox(listBox2);
+        }
+
+        private void copyPastaFitness(object sender, KeyEventArgs e)
+        {
+            CopyListBox(listBox3);
+        }
+
+        private void copyPastaConstraintViol(object sender, KeyEventArgs e)
+        {
+            CopyListBox(listBox4);
+        }
+
+        private void copyPastaBest(object sender, KeyEventArgs e)
+        {
+            CopyListBox(listBox5);
+        }
+
+        private void copyPastaBestGene(object sender, KeyEventArgs e)
+        {
+            CopyListBox(listBox9);
+        }
+
+        //pdf gen
+        private void btnPdf_Click(object sender, EventArgs e)
+        { 
+            pdfGeneration pdfDoc = new pdfGeneration();
+            report = pdfDoc.generatePdfParameters(typeOfPop, numericUpDown4.Value);
+
+            if(beforeOptimize != null)
+            {
+                report = pdfDoc.generatePdfResult(report, beforeOptimize.ToArray(), "before optimisation",null,null);
+            }                     
+
+            if (afterOptimize.Count != 0)
+            {
+                int cpt = 0;                
+                foreach (string[] result in afterOptimize)
+                {
+                    int tempValue = cpt;
+                    cpt++;
+                    report = pdfDoc.generatePdfResult(report, result, "After " + cpt + " optimisation cycle", optimizeParameter.ElementAt(tempValue), allGraph.ElementAt(tempValue));
+                    
+                }
+            }
+            report = pdfDoc.generateListFitness(report, listBox9);
+            report.Close();
+                        
         }
     }
 }
