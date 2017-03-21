@@ -15,8 +15,8 @@ namespace blueCow.Models
         {
             
             Document doc = new Document(PageSize.A4);
-            string fileName = @"D:\wVisualStudio\test\ResultReport_";
-            fileName = fileName + "" + DateTime.Now.ToString("HH-mm-ss_dd-MM-yyyy") + ".pdf";
+            string fileName = SysConfig.pdfPath;
+            fileName = fileName + "\\ResultReport_" + DateTime.Now.ToString("HH-mm-ss_dd-MM-yyyy") + ".pdf";
             Directory.CreateDirectory(Path.GetDirectoryName(fileName));
             var output = new FileStream(fileName, FileMode.Create);
             var writer = PdfWriter.GetInstance(doc, output);

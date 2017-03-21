@@ -28,14 +28,14 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea5 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend5 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series5 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea6 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend6 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series6 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea7 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend7 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series7 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea8 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend8 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series8 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
             this.button1 = new System.Windows.Forms.Button();
             this.listBox1 = new System.Windows.Forms.ListBox();
             this.label1 = new System.Windows.Forms.Label();
@@ -58,6 +58,7 @@
             this.button9 = new System.Windows.Forms.Button();
             this.numericUpDown4 = new System.Windows.Forms.NumericUpDown();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.button10 = new System.Windows.Forms.Button();
             this.label22 = new System.Windows.Forms.Label();
             this.numericUpDown9 = new System.Windows.Forms.NumericUpDown();
             this.label21 = new System.Windows.Forms.Label();
@@ -100,7 +101,10 @@
             this.listBox9 = new System.Windows.Forms.ListBox();
             this.label18 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.button10 = new System.Windows.Forms.Button();
+            this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
+            this.label23 = new System.Windows.Forms.Label();
+            this.label24 = new System.Windows.Forms.Label();
+            this.label25 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown4)).BeginInit();
             this.groupBox1.SuspendLayout();
@@ -322,6 +326,9 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.label25);
+            this.groupBox1.Controls.Add(this.label24);
+            this.groupBox1.Controls.Add(this.label23);
             this.groupBox1.Controls.Add(this.button10);
             this.groupBox1.Controls.Add(this.label22);
             this.groupBox1.Controls.Add(this.numericUpDown9);
@@ -358,6 +365,16 @@
             this.groupBox1.TabIndex = 33;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Tour Optimisation";
+            // 
+            // button10
+            // 
+            this.button10.Location = new System.Drawing.Point(281, 463);
+            this.button10.Name = "button10";
+            this.button10.Size = new System.Drawing.Size(141, 23);
+            this.button10.TabIndex = 60;
+            this.button10.Text = "Generate Pdf";
+            this.button10.UseVisualStyleBackColor = true;
+            this.button10.Click += new System.EventHandler(this.btnPdf_Click);
             // 
             // label22
             // 
@@ -469,7 +486,7 @@
             // 
             // button5
             // 
-            this.button5.Location = new System.Drawing.Point(281, 350);
+            this.button5.Location = new System.Drawing.Point(281, 421);
             this.button5.Name = "button5";
             this.button5.Size = new System.Drawing.Size(141, 36);
             this.button5.TabIndex = 50;
@@ -498,7 +515,7 @@
             // 
             // button4
             // 
-            this.button4.Location = new System.Drawing.Point(281, 267);
+            this.button4.Location = new System.Drawing.Point(281, 363);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(141, 23);
             this.button4.TabIndex = 45;
@@ -525,7 +542,7 @@
             // 
             // progressBar4
             // 
-            this.progressBar4.Location = new System.Drawing.Point(281, 301);
+            this.progressBar4.Location = new System.Drawing.Point(281, 334);
             this.progressBar4.Name = "progressBar4";
             this.progressBar4.Size = new System.Drawing.Size(141, 23);
             this.progressBar4.TabIndex = 47;
@@ -646,17 +663,17 @@
             // 
             // chart1
             // 
-            chartArea5.Name = "ChartArea1";
-            this.chart1.ChartAreas.Add(chartArea5);
-            legend5.Name = "Legend1";
-            this.chart1.Legends.Add(legend5);
+            chartArea7.Name = "ChartArea1";
+            this.chart1.ChartAreas.Add(chartArea7);
+            legend7.Name = "Legend1";
+            this.chart1.Legends.Add(legend7);
             this.chart1.Location = new System.Drawing.Point(932, 500);
             this.chart1.Name = "chart1";
-            series5.ChartArea = "ChartArea1";
-            series5.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
-            series5.Legend = "Legend1";
-            series5.Name = "Series2";
-            this.chart1.Series.Add(series5);
+            series7.ChartArea = "ChartArea1";
+            series7.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            series7.Legend = "Legend1";
+            series7.Name = "Series2";
+            this.chart1.Series.Add(series7);
             this.chart1.Size = new System.Drawing.Size(690, 290);
             this.chart1.TabIndex = 34;
             this.chart1.Text = "Convergence Trend";
@@ -692,17 +709,17 @@
             // 
             // chart2
             // 
-            chartArea6.Name = "ChartArea1";
-            this.chart2.ChartAreas.Add(chartArea6);
-            legend6.Name = "Legend1";
-            this.chart2.Legends.Add(legend6);
+            chartArea8.Name = "ChartArea1";
+            this.chart2.ChartAreas.Add(chartArea8);
+            legend8.Name = "Legend1";
+            this.chart2.Legends.Add(legend8);
             this.chart2.Location = new System.Drawing.Point(932, 29);
             this.chart2.Name = "chart2";
-            series6.ChartArea = "ChartArea1";
-            series6.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
-            series6.Legend = "Legend1";
-            series6.Name = "Series2";
-            this.chart2.Series.Add(series6);
+            series8.ChartArea = "ChartArea1";
+            series8.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            series8.Legend = "Legend1";
+            series8.Name = "Series2";
+            this.chart2.Series.Add(series8);
             this.chart2.Size = new System.Drawing.Size(690, 290);
             this.chart2.TabIndex = 38;
             this.chart2.Text = "Convergence Trend";
@@ -737,8 +754,8 @@
             // 
             this.dataGridView1.AllowUserToAddRows = false;
             this.dataGridView1.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopLeft;
-            this.dataGridView1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopLeft;
+            this.dataGridView1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle7;
             this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCellsExceptHeader;
             this.dataGridView1.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCellsExceptHeaders;
             this.dataGridView1.BorderStyle = System.Windows.Forms.BorderStyle.None;
@@ -761,8 +778,8 @@
             // 
             this.dataGridView2.AllowUserToAddRows = false;
             this.dataGridView2.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopLeft;
-            this.dataGridView2.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopLeft;
+            this.dataGridView2.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle8;
             this.dataGridView2.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCellsExceptHeader;
             this.dataGridView2.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCellsExceptHeaders;
             this.dataGridView2.BorderStyle = System.Windows.Forms.BorderStyle.None;
@@ -844,15 +861,37 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Tour Optimisation Illustration (Init pop with 1 member and 0 tour optimisations)";
             // 
-            // button10
+            // saveFileDialog1
             // 
-            this.button10.Location = new System.Drawing.Point(281, 463);
-            this.button10.Name = "button10";
-            this.button10.Size = new System.Drawing.Size(141, 23);
-            this.button10.TabIndex = 60;
-            this.button10.Text = "Generate Pdf";
-            this.button10.UseVisualStyleBackColor = true;
-            this.button10.Click += new System.EventHandler(this.btnPdf_Click);
+            this.saveFileDialog1.DefaultExt = "pdf";
+            this.saveFileDialog1.FileName = "Auto Generated";
+            // 
+            // label23
+            // 
+            this.label23.AutoSize = true;
+            this.label23.Location = new System.Drawing.Point(134, 113);
+            this.label23.Name = "label23";
+            this.label23.Size = new System.Drawing.Size(15, 13);
+            this.label23.TabIndex = 61;
+            this.label23.Text = "%";
+            // 
+            // label24
+            // 
+            this.label24.AutoSize = true;
+            this.label24.Location = new System.Drawing.Point(134, 141);
+            this.label24.Name = "label24";
+            this.label24.Size = new System.Drawing.Size(15, 13);
+            this.label24.TabIndex = 62;
+            this.label24.Text = "%";
+            // 
+            // label25
+            // 
+            this.label25.AutoSize = true;
+            this.label25.Location = new System.Drawing.Point(134, 167);
+            this.label25.Name = "label25";
+            this.label25.Size = new System.Drawing.Size(15, 13);
+            this.label25.TabIndex = 63;
+            this.label25.Text = "%";
             // 
             // advancedUI
             // 
@@ -974,6 +1013,10 @@
         private System.Windows.Forms.Label label22;
         private System.Windows.Forms.NumericUpDown numericUpDown9;
         private System.Windows.Forms.Button button10;
+        private System.Windows.Forms.SaveFileDialog saveFileDialog1;
+        private System.Windows.Forms.Label label25;
+        private System.Windows.Forms.Label label24;
+        private System.Windows.Forms.Label label23;
     }
 }
 

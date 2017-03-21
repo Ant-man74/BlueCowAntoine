@@ -385,7 +385,10 @@ namespace blueCow
 
         //pdf gen
         private void btnPdf_Click(object sender, EventArgs e)
-        { 
+        {
+            var dResult = saveFileDialog1.ShowDialog();
+            SysConfig.pdfPath = Path.GetDirectoryName(saveFileDialog1.FileName);
+            if (dResult == DialogResult.Cancel) { return; }
             pdfGeneration pdfDoc = new pdfGeneration();
             report = pdfDoc.generatePdfParameters(typeOfPop, numericUpDown4.Value);
 

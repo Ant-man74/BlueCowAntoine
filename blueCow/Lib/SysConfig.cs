@@ -67,5 +67,6 @@ namespace blueCow.Lib
         public static int maxTourGenerations = 100;
 
         public static string replacementMethod = "child to parent";
+        public static string pdfPath = @"G:\blueCowReports\";
     }
 }
