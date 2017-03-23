@@ -144,6 +144,11 @@ namespace blueCow
             listBox2.Items.Clear();
             listBox9.Items.Clear();
             Dictionary<string, int> bids = _dbh.GetBids();
+            var sortedDict = (from entry in bids orderby entry.Value descending select entry)
+                .ToDictionary(pair => pair.Key, pair => pair.Value).Take(SysConfig.maxCities);
+            int maxPossibleBids = sortedDict.Sum(x => x.Value);
+            listBox10.Items.Clear();
+            listBox10.Items.Add(maxPossibleBids);
             foreach (var i in inds)
             {
                 string cities = "";

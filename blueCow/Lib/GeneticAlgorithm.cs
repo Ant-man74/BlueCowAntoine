@@ -36,8 +36,25 @@ namespace blueCow.Lib
         {
             List<Individual> _population = new List<Individual>();
             bool[] alreadyBeen = new bool[SysConfig.chromeLength];
+            Dictionary<string, int> bids = dbh.GetBids();
+            var sortedDict = (from entry in bids orderby entry.Value descending select entry)
+                .ToDictionary(pair => pair.Key, pair => pair.Value).Take(SysConfig.maxCities);
             for (int i = 0; i < popSize; i++)
             {
+                // put highest possible val as first member
+                if (i == 0)
+                {
+                    var indHighest = new Individual();
+                    foreach(var kvp in sortedDict)
+                    {
+                        var idx = bids.IndexOf(kvp.Key);
+                        indHighest.Cities[idx] = true;
+                    }
+                    indHighest.GenerateTours(dbh, _rand);
+                    indHighest.CountriesVisited = SysConfig.maxCities;
+                    _population.Add(indHighest);
+                    continue;
+                }
                 var ind = new Individual();
                 var numCities = _rand.Next(SysConfig.minCities, SysConfig.maxCities);
                 for (int j = 0; j < numCities; j++)

@@ -56,6 +56,20 @@ namespace blueCow.Lib
             return true;
         }
 
+        public static int IndexOf<TKey, TValue>(this Dictionary<TKey, TValue> dictionary, TKey key)
+        {
+            int i = 0;
+            foreach (var pair in dictionary)
+            {
+                if (pair.Key.Equals(key))
+                {
+                    return i;
+                }
+                i++;
+            }
+            return -1;
+        }
+
         public static bool OrderAndBoolEquals(this bool[] array1, bool[] array2)
         {
             if (array1.Length != array2.Length)
