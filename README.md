@@ -1,7 +1,7 @@
 # BlueCowAntoine
 Algorythm used to solve a case of the Traveling sellsman problem with additionnal constraint
 
-To get it to work add the database file 
+To get it to work add the database file (in the folder blueCow\App_Data), this will allow you to use a working database
  - Distance.mdf
  - Distance_log.ldf
  - Distance_vs2015.mdf
