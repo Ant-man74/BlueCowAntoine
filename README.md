@@ -7,7 +7,10 @@ To get it to work add the database file
   Distance_vs2015.mdf
   Distance_vs2015_log.mdf
 
-or regenarate the database (although I don't remember the procedure)
+or regenarate the database 
+Create a database file with the name you desire
+Execute the sql command that are in the project
+profit?
 
 change the path to these files in AppConfig
 
