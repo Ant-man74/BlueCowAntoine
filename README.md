@@ -2,15 +2,15 @@
 Algorythm used to solve a case of the Traveling sellsman problem with additionnal constraint
 
 To get it to work add the database file 
-  Distance.mdf
-  Distance_log.ldf
-  Distance_vs2015.mdf
-  Distance_vs2015_log.mdf
+ - Distance.mdf
+ - Distance_log.ldf
+ - Distance_vs2015.mdf
+ - Distance_vs2015_log.mdf
 
 or regenarate the database 
-Create a database file with the name you desire
-Execute the sql command that are in the project
-profit?
+ - Create a database file with the name you desire
+ - Execute the sql command that are in the project
+ - the project should be working after you change the path name in appconfig but this method do not always work
 
 change the path to these files in AppConfig
 
